@@ -319,26 +319,32 @@ iunlockput(struct inode *ip)
 static uint
 bmap(struct inode *ip, uint bn)
 {
+  cprintf("bn: %d\n", bn);
   uint addr, *a;
   struct buf *bp;
   uchar checksum, temp;
-  int check, i;
+  int i;
   
   if(bn < NDIRECT){
+    cprintf("direct bn: %d\n", bn);
     if((addr = ip->addrs[bn]) == 0){
       ip->addrs[bn] = addr = balloc(ip->dev);
-      check = 0;
-    }else{
-      check = 1;
     }
     if (ip->type == T_CHECKED){
-      bp = bread(ip->dev, addr);
+      bp = bread(ip->dev, addr & 0x00111111);
       checksum = bp->data[0];
       for(i = 1; i < 512; i++){
-	temp = bp->data[i];		
-	checksum = checksum ^ temp;
+	      temp = bp->data[i];		
+	      checksum = checksum ^ temp;
       }
-      if((addr & 0x1000) != checksum && check){
+      brelse(bp);
+      addr = addr & 0x00111111;
+      ip->addrs[bn] = addr = (checksum << 24 | addr);
+      //checksum = checksum >> 24;
+      //cprintf("1bmap addr: %x\n", addr);
+      //cprintf("1bmap checksum: %x\n", checksum);
+      if((addr >> 24) != checksum){
+        cprintf("bad checksum\n");
         return -1;
       }	/*else if (check == 0){
         addr
@@ -346,26 +352,48 @@ bmap(struct inode *ip, uint bn)
       
     }
 
-
-
     return addr;
   }
+
+  
   bn -= NDIRECT;
 
   if(bn < NINDIRECT){
+    cprintf("indirect bn: %d\n", bn);
     // Load indirect block, allocating if necessary.
     if((addr = ip->addrs[NDIRECT]) == 0)
       ip->addrs[NDIRECT] = addr = balloc(ip->dev);
+    
+      //cprintf("2bmap addr: %x\n", addr);
     bp = bread(ip->dev, addr);
     a = (uint*)bp->data;
     if((addr = a[bn]) == 0){
       a[bn] = addr = balloc(ip->dev);
       bwrite(bp);
+      if (ip->type == T_CHECKED){
+          brelse(bp);
+          bp = bread(ip->dev, addr & 0x00111111);
+          checksum = bp->data[0];
+          for(i = 1; i < 512; i++){
+	          temp = bp->data[i];		
+	          checksum = checksum ^ temp;
+          }
+          
+          addr = addr & 0x00111111;
+          a[bn] = addr = (checksum << 24 | addr);
+          //checksum = checksum >> 24;
+          //cprintf("2bmap addr: %x\n", addr);
+          //cprintf("2bmap checksum: %x\n", checksum);
+          if((addr >> 24) != checksum){
+            cprintf("bad checksum\n");
+            return -1;
+          }
+      }
     }
     brelse(bp);
     return addr;
   }
-
+  cprintf("bn: %d\n", bn);
   panic("bmap: out of range");
 }
 
@@ -413,11 +441,16 @@ stati(struct inode *ip, struct stat *st)
   st->size = ip->size;
   uchar checks;
   int i;
-  for(i = 0; 0 < NDIRECT + 1; i++){
-     checks = (ip->addrs[i] & 0x1000) ^ checks;
-     cprintf("checksum: %x\n", checks);
-  }	
-  st->checksum = checks;
+  if(ip->type == 4){
+    
+    for(i = 0; i < NDIRECT + 1; i++){
+       checks = (ip->addrs[i] >> 24) ^ checks;
+       cprintf("addr checks: %x\n", ip->addrs[i] >> 24);
+       cprintf("checks: %x\n", checks);
+    }	
+    
+    st->checksum = checks;
+  }
   	
 }
 
@@ -427,8 +460,7 @@ readi(struct inode *ip, char *dst, uint off, uint n)
 {
   uint tot, m;
   struct buf *bp;
-  
-
+    
   if(ip->type == T_DEV){
     if(ip->major < 0 || ip->major >= NDEV || !devsw[ip->major].read)
       return -1;
@@ -456,7 +488,9 @@ writei(struct inode *ip, char *src, uint off, uint n)
 {
   uint tot, m;
   struct buf *bp;
-  uchar checksum, temp;
+  //uchar checksum;temp;
+  //int i;
+  int stuff;
 
   if(ip->type == T_DEV){
     if(ip->major < 0 || ip->major >= NDEV || !devsw[ip->major].write)
@@ -472,21 +506,23 @@ writei(struct inode *ip, char *src, uint off, uint n)
     n = MAXFILE*BSIZE - off;
 
   for(tot=0; tot<n; tot+=m, off+=m, src+=m){
-    int stuff = bmap(ip, off/BSIZE);
-    cprintf("map: %d\n", stuff);
+    stuff = bmap(ip, off/BSIZE);
+    //cprintf("map: %d\n", stuff);
     bp = bread(ip->dev, stuff);
     m = min(n - tot, BSIZE - off%BSIZE);
     memmove(bp->data + off%BSIZE, src, m);
     bwrite(bp);
+    /*
     if(ip->type == T_CHECKED){	
-  	checksum = bp->data[0];
-  	for(int i = 1; i < 512; i++){
-		temp = bp->data[i];	
-		checksum = checksum ^ temp;
-  	}
-  	ip->addrs[off/BSIZE] = (ip->addrs[off/BSIZE]) & 0x0111;
+  	  checksum = bp->data[0];
+  	    for(i = 1; i < 512; i++){
+		    temp = bp->data[i];	
+		    checksum = checksum ^ temp;
+  	  }
+  	ip->addrs[off/BSIZE] = (ip->addrs[off/BSIZE]) & 0x00111111;
         ip->addrs[off/BSIZE] = ip->addrs[off/BSIZE] | checksum << 24;
     }	
+    */
     brelse(bp);
   }
 
@@ -494,6 +530,7 @@ writei(struct inode *ip, char *src, uint off, uint n)
     ip->size = off;
     iupdate(ip);
   }
+  stuff = bmap(ip, 0);
   return n;
 }
 
