@@ -8,7 +8,9 @@ build xv6 using make
 **********************************************************************
 Trying to clean project using make clean
 make clean
-rm -rf kernel/bio.o kernel/console.o kernel/exec.o kernel/file.o kernel/fs.o kernel/ide.o kernel/ioapic.o kernel/kalloc.o kernel/kbd.o kernel/lapic.o kernel/main.o kernel/mp.o kernel/picirq.o kernel/pipe.o kernel/proc.o kernel/spinlock.o kernel/string.o kernel/swtch.o kernel/syscall.o kernel/sysfile.o kernel/sysproc.o kernel/timer.o kernel/trapasm.o kernel/trap.o kernel/uart.o kernel/vectors.o kernel/vm.o kernel/bootmain.o kernel/bootasm.o kernel/multiboot.o kernel/data.o kernel/bootother.o kernel/initcode.o kernel/bio.d kernel/console.d kernel/exec.d kernel/file.d kernel/fs.d kernel/ide.d kernel/ioapic.d kernel/kalloc.d kernel/kbd.d kernel/lapic.d kernel/main.d kernel/mp.d kernel/picirq.d kernel/pipe.d kernel/proc.d kernel/spinlock.d kernel/string.d kernel/swtch.d kernel/syscall.d kernel/sysfile.d kernel/sysproc.d kernel/timer.d kernel/trapasm.d kernel/trap.d kernel/uart.d kernel/vectors.d kernel/vm.d kernel/bootmain.d kernel/bootasm.d kernel/multiboot.d kernel/data.d kernel/bootother.d kernel/initcode.d kernel/vectors.S kernel/bootblock kernel/bootblock.out kernel/bootother.out kernel/initcode.out kernel/kernel bootother initcode xv6.img user/bin user/cat user/check user/echo user/filestat user/forktest user/grep user/init user/kill user/ln user/ls user/mkdir user/rm user/sh user/stressfs user/tester user/usertests user/wc user/zombie user/cat.o user/check.o user/echo.o user/filestat.o user/forktest.o user/grep.o user/init.o user/kill.o user/ln.o user/ls.o user/mkdir.o user/rm.o user/sh.o user/stressfs.o user/tester.o user/usertests.o user/wc.o user/zombie.o user/ulib.o user/usys.o user/printf.o user/umalloc.o user/cat.d user/check.d user/echo.d user/filestat.d user/forktest.d user/grep.d user/init.d user/kill.d user/ln.d user/ls.d user/mkdir.d user/rm.d user/sh.d user/stressfs.d user/tester.d user/usertests.d user/wc.d user/zombie.d user/ulib.d user/usys.d user/printf.d user/umalloc.d tools/mkfs tools/mkfs.o tools/mkfs.d fs fs.img .gdbinit .bochsrc dist
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG kernel/fs.c -MF kernel/fs.d -MT kernel/fs.d -MT kernel/fs.o
+rm -rf kernel/bio.o kernel/console.o kernel/exec.o kernel/file.o kernel/fs.o kernel/ide.o kernel/ioapic.o kernel/kalloc.o kernel/kbd.o kernel/lapic.o kernel/main.o kernel/mp.o kernel/picirq.o kernel/pipe.o kernel/proc.o kernel/spinlock.o kernel/string.o kernel/swtch.o kernel/syscall.o kernel/sysfile.o kernel/sysproc.o kernel/timer.o kernel/trapasm.o kernel/trap.o kernel/uart.o kernel/vectors.o kernel/vm.o kernel/bootmain.o kernel/bootasm.o kernel/multiboot.o kernel/data.o kernel/bootother.o kernel/initcode.o kernel/bio.d kernel/console.d kernel/exec.d kernel/file.d kernel/fs.d kernel/ide.d kernel/ioapic.d kernel/kalloc.d kernel/kbd.d kernel/lapic.d kernel/main.d kernel/mp.d kernel/picirq.d kernel/pipe.d kernel/proc.d kernel/spinlock.d kernel/string.d kernel/swtch.d kernel/syscall.d kernel/sysfile.d kernel/sysproc.d kernel/timer.d kernel/trapasm.d kernel/trap.d kernel/uart.d kernel/vectors.d kernel/vm.d kernel/bootmain.d kernel/bootasm.d kernel/multiboot.d kernel/data.d kernel/bootother.d kernel/initcode.d kernel/vectors.S kernel/bootblock kernel/bootblock.out kernel/bootother.out kernel/initcode.out kernel/kernel bootother initcode xv6.img user/bin user/cat user/check user/echo user/filestat user/forktest user/grep user/init user/kill user/ln user/ls user/mkdir user/rm user/sh user/stressfs user/tester user/usertests user/wc user/write2 user/zombie user/cat.o user/check.o user/echo.o user/filestat.o user/forktest.o user/grep.o user/init.o user/kill.o user/ln.o user/ls.o user/mkdir.o user/rm.o user/sh.o user/stressfs.o user/tester.o user/usertests.o user/wc.o user/write2.o user/zombie.o user/ulib.o user/usys.o user/printf.o user/umalloc.o user/cat.d user/check.d user/echo.d user/filestat.d user/forktest.d user/grep.d user/init.d user/kill.d user/ln.d user/ls.d user/mkdir.d user/rm.d user/sh.d user/stressfs.d user/tester.d user/usertests.d user/wc.d user/write2.d user/zombie.d user/ulib.d user/usys.d user/printf.d user/umalloc.d tools/mkfs tools/mkfs.o tools/mkfs.d fs fs.img .gdbinit .bochsrc dist
 Trying to build project using make
 make
 Makefile:149: kernel/bio.d: No such file or directory
@@ -61,6 +63,7 @@ Makefile:149: user/stressfs.d: No such file or directory
 Makefile:149: user/tester.d: No such file or directory
 Makefile:149: user/usertests.d: No such file or directory
 Makefile:149: user/wc.d: No such file or directory
+Makefile:149: user/write2.d: No such file or directory
 Makefile:149: user/zombie.d: No such file or directory
 Makefile:149: user/ulib.d: No such file or directory
 Makefile:149: user/usys.d: No such file or directory
@@ -79,6 +82,8 @@ gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-
 		-M -MG user/ulib.c -MF user/ulib.d -MT user/ulib.d -MT user/ulib.o
 gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
 		-M -MG user/zombie.c -MF user/zombie.d -MT user/zombie.d -MT user/zombie.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/write2.c -MF user/write2.d -MT user/write2.d -MT user/write2.o
 gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
 		-M -MG user/wc.c -MF user/wc.d -MT user/wc.d -MT user/wc.o
 gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
@@ -235,15 +240,15 @@ ld  -m    elf_i386 -nostdlib --omagic \
 dd if=/dev/zero of=xv6.img count=10000
 10000+0 records in
 10000+0 records out
-5120000 bytes (5.1 MB) copied, 0.0112938 s, 453 MB/s
+5120000 bytes (5.1 MB) copied, 0.010607 s, 483 MB/s
 dd if=kernel/bootblock of=xv6.img conv=notrunc
 1+0 records in
 1+0 records out
-512 bytes (512 B) copied, 6.7241e-05 s, 7.6 MB/s
+512 bytes (512 B) copied, 6.1552e-05 s, 8.3 MB/s
 dd if=kernel/kernel of=xv6.img seek=1 conv=notrunc
 253+1 records in
 253+1 records out
-129804 bytes (130 kB) copied, 0.000283661 s, 458 MB/s
+129800 bytes (130 kB) copied, 0.000253227 s, 513 MB/s
 gcc -c  -iquote include -Wall -Werror -ggdb  -o tools/mkfs.o tools/mkfs.c
 gcc  tools/mkfs.o -o tools/mkfs
 mkdir -p fs
@@ -304,33 +309,37 @@ cp user/bin/usertests fs/usertests
 gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/wc.o user/wc.c
 ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/wc user/wc.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
 cp user/bin/wc fs/wc
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/write2.o user/write2.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/write2 user/write2.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/write2 fs/write2
 gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/zombie.o user/zombie.c
 ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/zombie user/zombie.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
 cp user/bin/zombie fs/zombie
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-zombie
+rm
+check
 init
+grep
 ln
+kill
 cat
 tester
-ls
-filestat
 sh
 mkdir
-forktest
-wc
-check
-usertests
-README
-rm
-grep
-kill
 echo
+filestat
+zombie
+forktest
 stressfs
-balloc: first 461 blocks have been allocated
+usertests
+write2
+README
+wc
+ls
+balloc: first 484 blocks have been allocated
 balloc: write bitmap block at sector 28
-rm user/bin/grep user/bin/stressfs user/bin/tester user/bin/kill user/bin/filestat user/bin/cat user/bin/mkdir user/bin/init user/bin/check user/bin/rm user/bin/echo user/bin/ls user/bin/ln user/bin/usertests user/bin/sh user/bin/wc user/bin/zombie
+rm user/bin/grep user/bin/stressfs user/bin/write2 user/bin/tester user/bin/kill user/bin/filestat user/bin/cat user/bin/mkdir user/bin/init user/bin/check user/bin/rm user/bin/echo user/bin/ls user/bin/ln user/bin/usertests user/bin/sh user/bin/wc user/bin/zombie
 
 
 test build PASSED
@@ -354,26 +363,27 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-zombie
+rm
+check
 init
+grep
 ln
+kill
 cat
 tester
-ls
-filestat
 sh
 mkdir
-forktest
-wc
-check
-usertests
-README
-rm
-grep
-kill
 echo
+filestat
+zombie
+forktest
 stressfs
-balloc: first 464 blocks have been allocated
+usertests
+write2
+README
+wc
+ls
+balloc: first 487 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
 make qemu-nox 
@@ -391,19 +401,14 @@ buffer size: 512
 file size: 512
 create checked file
 writing file
-bad checksum
-bad checksum
 reopening read only
 reading file
-bad checksum
-checksumA: ff, checksumB: 2d
-user/tester.c: 53 assert failed (r == size)
-TEST FAILED
+checksumA: 41, checksumB: 41
+TEST PASSED
 
 
-test write1 FAILED (0 of 15)
+test write1 PASSED (15 of 15)
  (write then read a block)
- tester failed
 
 starting write2
 
@@ -423,26 +428,27 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-zombie
+rm
+check
 init
+grep
 ln
+kill
 cat
 tester
-ls
-filestat
 sh
 mkdir
-forktest
-wc
-check
-usertests
-README
-rm
-grep
-kill
 echo
+filestat
+zombie
+forktest
 stressfs
-balloc: first 464 blocks have been allocated
+usertests
+write2
+README
+wc
+ls
+balloc: first 487 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
 make qemu-nox 
@@ -460,41 +466,153 @@ buffer size: 512
 file size: 71680
 create checked file
 writing file
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
 reopening read only
 reading file
-bad checksum
-checksumA: ff, checksumB: c9
-user/tester.c: 53 assert failed (r == size)
-TEST FAILED
+checksumA: 41, checksumB: 41
+checksumA: 42, checksumB: 42
+checksumA: 43, checksumB: 43
+checksumA: 44, checksumB: 44
+checksumA: 45, checksumB: 45
+checksumA: 46, checksumB: 46
+checksumA: 47, checksumB: 47
+checksumA: 48, checksumB: 48
+checksumA: 49, checksumB: 49
+checksumA: 4a, checksumB: 4a
+checksumA: 4b, checksumB: 4b
+checksumA: 4c, checksumB: 4c
+checksumA: 4d, checksumB: 4d
+checksumA: 4e, checksumB: 4e
+checksumA: 4f, checksumB: 4f
+checksumA: 50, checksumB: 50
+checksumA: 51, checksumB: 51
+checksumA: 52, checksumB: 52
+checksumA: 53, checksumB: 53
+checksumA: 54, checksumB: 54
+checksumA: 55, checksumB: 55
+checksumA: 56, checksumB: 56
+checksumA: 57, checksumB: 57
+checksumA: 58, checksumB: 58
+checksumA: 59, checksumB: 59
+checksumA: 5a, checksumB: 5a
+checksumA: 5b, checksumB: 5b
+checksumA: 5c, checksumB: 5c
+checksumA: 5d, checksumB: 5d
+checksumA: 5e, checksumB: 5e
+checksumA: 5f, checksumB: 5f
+checksumA: 60, checksumB: 60
+checksumA: 61, checksumB: 61
+checksumA: 62, checksumB: 62
+checksumA: 63, checksumB: 63
+checksumA: 64, checksumB: 64
+checksumA: 65, checksumB: 65
+checksumA: 66, checksumB: 66
+checksumA: 67, checksumB: 67
+checksumA: 68, checksumB: 68
+checksumA: 69, checksumB: 69
+checksumA: 6a, checksumB: 6a
+checksumA: 6b, checksumB: 6b
+checksumA: 6c, checksumB: 6c
+checksumA: 6d, checksumB: 6d
+checksumA: 6e, checksumB: 6e
+checksumA: 6f, checksumB: 6f
+checksumA: 70, checksumB: 70
+checksumA: 71, checksumB: 71
+checksumA: 72, checksumB: 72
+checksumA: 73, checksumB: 73
+checksumA: 74, checksumB: 74
+checksumA: 75, checksumB: 75
+checksumA: 76, checksumB: 76
+checksumA: 77, checksumB: 77
+checksumA: 78, checksumB: 78
+checksumA: 79, checksumB: 79
+checksumA: 7a, checksumB: 7a
+checksumA: 7b, checksumB: 7b
+checksumA: 7c, checksumB: 7c
+checksumA: 7d, checksumB: 7d
+checksumA: 7e, checksumB: 7e
+checksumA: 7f, checksumB: 7f
+checksumA: 80, checksumB: 80
+checksumA: 81, checksumB: 81
+checksumA: 82, checksumB: 82
+checksumA: 83, checksumB: 83
+checksumA: 84, checksumB: 84
+checksumA: 85, checksumB: 85
+checksumA: 86, checksumB: 86
+checksumA: 87, checksumB: 87
+checksumA: 88, checksumB: 88
+checksumA: 89, checksumB: 89
+checksumA: 8a, checksumB: 8a
+checksumA: 8b, checksumB: 8b
+checksumA: 8c, checksumB: 8c
+checksumA: 8d, checksumB: 8d
+checksumA: 8e, checksumB: 8e
+checksumA: 8f, checksumB: 8f
+checksumA: 90, checksumB: 90
+checksumA: 91, checksumB: 91
+checksumA: 92, checksumB: 92
+checksumA: 93, checksumB: 93
+checksumA: 94, checksumB: 94
+checksumA: 95, checksumB: 95
+checksumA: 96, checksumB: 96
+checksumA: 97, checksumB: 97
+checksumA: 98, checksumB: 98
+checksumA: 99, checksumB: 99
+checksumA: 9a, checksumB: 9a
+checksumA: 9b, checksumB: 9b
+checksumA: 9c, checksumB: 9c
+checksumA: 9d, checksumB: 9d
+checksumA: 9e, checksumB: 9e
+checksumA: 9f, checksumB: 9f
+checksumA: a0, checksumB: a0
+checksumA: a1, checksumB: a1
+checksumA: a2, checksumB: a2
+checksumA: a3, checksumB: a3
+checksumA: a4, checksumB: a4
+checksumA: a5, checksumB: a5
+checksumA: a6, checksumB: a6
+checksumA: a7, checksumB: a7
+checksumA: a8, checksumB: a8
+checksumA: a9, checksumB: a9
+checksumA: aa, checksumB: aa
+checksumA: ab, checksumB: ab
+checksumA: ac, checksumB: ac
+checksumA: ad, checksumB: ad
+checksumA: ae, checksumB: ae
+checksumA: af, checksumB: af
+checksumA: b0, checksumB: b0
+checksumA: b1, checksumB: b1
+checksumA: b2, checksumB: b2
+checksumA: b3, checksumB: b3
+checksumA: b4, checksumB: b4
+checksumA: b5, checksumB: b5
+checksumA: b6, checksumB: b6
+checksumA: b7, checksumB: b7
+checksumA: b8, checksumB: b8
+checksumA: b9, checksumB: b9
+checksumA: ba, checksumB: ba
+checksumA: bb, checksumB: bb
+checksumA: bc, checksumB: bc
+checksumA: bd, checksumB: bd
+checksumA: be, checksumB: be
+checksumA: bf, checksumB: bf
+checksumA: c0, checksumB: c0
+checksumA: c1, checksumB: c1
+checksumA: c2, checksumB: c2
+checksumA: c3, checksumB: c3
+checksumA: c4, checksumB: c4
+checksumA: c5, checksumB: c5
+checksumA: c6, checksumB: c6
+checksumA: c7, checksumB: c7
+checksumA: c8, checksumB: c8
+checksumA: c9, checksumB: c9
+checksumA: ca, checksumB: ca
+checksumA: cb, checksumB: cb
+checksumA: cc, checksumB: cc
+TEST PASSED
 
 
-test write2 FAILED (0 of 10)
+test write2 PASSED (10 of 10)
  (write then read largest possible file)
- tester failed
 
 starting write3
 
@@ -514,26 +632,27 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-zombie
+rm
+check
 init
+grep
 ln
+kill
 cat
 tester
-ls
-filestat
 sh
 mkdir
-forktest
-wc
-check
-usertests
-README
-rm
-grep
-kill
 echo
+filestat
+zombie
+forktest
 stressfs
-balloc: first 464 blocks have been allocated
+usertests
+write2
+README
+wc
+ls
+balloc: first 487 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
 make qemu-nox 
@@ -551,59 +670,1045 @@ buffer size: 500
 file size: 71500
 create checked file
 writing file
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
-bad checksum
+reopening read only
+reading file
+checksumA: 3, checksumB: 3
+checksumA: 3, checksumB: 3
+checksumA: 43, checksumB: 43
+checksumA: 43, checksumB: 43
+checksumA: 44, checksumB: 44
+checksumA: 44, checksumB: 44
+checksumA: 45, checksumB: 45
+checksumA: 45, checksumB: 45
+checksumA: 46, checksumB: 46
+checksumA: 46, checksumB: 46
+checksumA: 47, checksumB: 47
+checksumA: 47, checksumB: 47
+checksumA: 48, checksumB: 48
+checksumA: 48, checksumB: 48
+checksumA: 49, checksumB: 49
+checksumA: 49, checksumB: 49
+checksumA: 4a, checksumB: 4a
+checksumA: 4a, checksumB: 4a
+checksumA: 4b, checksumB: 4b
+checksumA: 4b, checksumB: 4b
+checksumA: 4c, checksumB: 4c
+checksumA: 4c, checksumB: 4c
+checksumA: 4d, checksumB: 4d
+checksumA: 4d, checksumB: 4d
+checksumA: 4e, checksumB: 4e
+checksumA: 4e, checksumB: 4e
+checksumA: 4f, checksumB: 4f
+checksumA: 4f, checksumB: 4f
+checksumA: 50, checksumB: 50
+checksumA: 50, checksumB: 50
+checksumA: 51, checksumB: 51
+checksumA: 51, checksumB: 51
+checksumA: 52, checksumB: 52
+checksumA: 52, checksumB: 52
+checksumA: 53, checksumB: 53
+checksumA: 53, checksumB: 53
+checksumA: 54, checksumB: 54
+checksumA: 54, checksumB: 54
+checksumA: 55, checksumB: 55
+checksumA: 55, checksumB: 55
+checksumA: 56, checksumB: 56
+checksumA: 56, checksumB: 56
+checksumA: 57, checksumB: 57
+checksumA: 57, checksumB: 57
+checksumA: 58, checksumB: 58
+checksumA: 58, checksumB: 58
+checksumA: 59, checksumB: 59
+checksumA: 59, checksumB: 59
+checksumA: 5a, checksumB: 5a
+checksumA: 5a, checksumB: 5a
+checksumA: 5b, checksumB: 5b
+checksumA: 5b, checksumB: 5b
+checksumA: 5c, checksumB: 5c
+checksumA: 5c, checksumB: 5c
+checksumA: 5d, checksumB: 5d
+checksumA: 5d, checksumB: 5d
+checksumA: 5e, checksumB: 5e
+checksumA: 5e, checksumB: 5e
+checksumA: 5f, checksumB: 5f
+checksumA: 5f, checksumB: 5f
+checksumA: 60, checksumB: 60
+checksumA: 60, checksumB: 60
+checksumA: 61, checksumB: 61
+checksumA: 61, checksumB: 61
+checksumA: 62, checksumB: 62
+checksumA: 62, checksumB: 62
+checksumA: 63, checksumB: 63
+checksumA: 63, checksumB: 63
+checksumA: 64, checksumB: 64
+checksumA: 64, checksumB: 64
+checksumA: 65, checksumB: 65
+checksumA: 65, checksumB: 65
+checksumA: 66, checksumB: 66
+checksumA: 66, checksumB: 66
+checksumA: 67, checksumB: 67
+checksumA: 67, checksumB: 67
+checksumA: 68, checksumB: 68
+checksumA: 68, checksumB: 68
+checksumA: 69, checksumB: 69
+checksumA: 69, checksumB: 69
+checksumA: 6a, checksumB: 6a
+checksumA: 6a, checksumB: 6a
+checksumA: 7, checksumB: 7
+checksumA: 7, checksumB: 7
+checksumA: 7, checksumB: 7
+checksumA: 6d, checksumB: 6d
+checksumA: 6d, checksumB: 6d
+checksumA: 6e, checksumB: 6e
+checksumA: 6e, checksumB: 6e
+checksumA: 6f, checksumB: 6f
+checksumA: 6f, checksumB: 6f
+checksumA: 70, checksumB: 70
+checksumA: 70, checksumB: 70
+checksumA: 71, checksumB: 71
+checksumA: 71, checksumB: 71
+checksumA: 72, checksumB: 72
+checksumA: 72, checksumB: 72
+checksumA: 73, checksumB: 73
+checksumA: 73, checksumB: 73
+checksumA: 74, checksumB: 74
+checksumA: 74, checksumB: 74
+checksumA: 75, checksumB: 75
+checksumA: 75, checksumB: 75
+checksumA: 76, checksumB: 76
+checksumA: 76, checksumB: 76
+checksumA: 77, checksumB: 77
+checksumA: 77, checksumB: 77
+checksumA: 78, checksumB: 78
+checksumA: 78, checksumB: 78
+checksumA: 79, checksumB: 79
+checksumA: 79, checksumB: 79
+checksumA: 7a, checksumB: 7a
+checksumA: 7a, checksumB: 7a
+checksumA: 7b, checksumB: 7b
+checksumA: 7b, checksumB: 7b
+checksumA: 7c, checksumB: 7c
+checksumA: 7c, checksumB: 7c
+checksumA: 7d, checksumB: 7d
+checksumA: 7d, checksumB: 7d
+checksumA: 7e, checksumB: 7e
+checksumA: 7e, checksumB: 7e
+checksumA: 7f, checksumB: 7f
+checksumA: 7f, checksumB: 7f
+checksumA: 80, checksumB: 80
+checksumA: 80, checksumB: 80
+checksumA: 81, checksumB: 81
+checksumA: 81, checksumB: 81
+checksumA: 82, checksumB: 82
+checksumA: 82, checksumB: 82
+checksumA: 83, checksumB: 83
+checksumA: 83, checksumB: 83
+checksumA: 84, checksumB: 84
+checksumA: 84, checksumB: 84
+checksumA: 85, checksumB: 85
+checksumA: 85, checksumB: 85
+checksumA: 86, checksumB: 86
+checksumA: 86, checksumB: 86
+checksumA: 87, checksumB: 87
+checksumA: 87, checksumB: 87
+checksumA: 88, checksumB: 88
+checksumA: 88, checksumB: 88
+checksumA: 89, checksumB: 89
+checksumA: 89, checksumB: 89
+checksumA: 8a, checksumB: 8a
+checksumA: 8a, checksumB: 8a
+checksumA: 8b, checksumB: 8b
+checksumA: 8b, checksumB: 8b
+checksumA: 8c, checksumB: 8c
+checksumA: 8c, checksumB: 8c
+checksumA: 8d, checksumB: 8d
+checksumA: 8d, checksumB: 8d
+checksumA: 8e, checksumB: 8e
+checksumA: 8e, checksumB: 8e
+checksumA: 8f, checksumB: 8f
+checksumA: 8f, checksumB: 8f
+checksumA: 90, checksumB: 90
+checksumA: 90, checksumB: 90
+checksumA: 91, checksumB: 91
+checksumA: 91, checksumB: 91
+checksumA: 92, checksumB: 92
+checksumA: 92, checksumB: 92
+checksumA: 93, checksumB: 93
+checksumA: 93, checksumB: 93
+checksumA: 94, checksumB: 94
+checksumA: 94, checksumB: 94
+checksumA: 95, checksumB: 95
+checksumA: 95, checksumB: 95
+checksumA: 1, checksumB: 1
+checksumA: 1, checksumB: 1
+checksumA: 1, checksumB: 1
+checksumA: 98, checksumB: 98
+checksumA: 98, checksumB: 98
+checksumA: 99, checksumB: 99
+checksumA: 99, checksumB: 99
+checksumA: 9a, checksumB: 9a
+checksumA: 9a, checksumB: 9a
+checksumA: 9b, checksumB: 9b
+checksumA: 9b, checksumB: 9b
+checksumA: 9c, checksumB: 9c
+checksumA: 9c, checksumB: 9c
+checksumA: 9d, checksumB: 9d
+checksumA: 9d, checksumB: 9d
+checksumA: 9e, checksumB: 9e
+checksumA: 9e, checksumB: 9e
+checksumA: 9f, checksumB: 9f
+checksumA: 9f, checksumB: 9f
+checksumA: a0, checksumB: a0
+checksumA: a0, checksumB: a0
+checksumA: a1, checksumB: a1
+checksumA: a1, checksumB: a1
+checksumA: a2, checksumB: a2
+checksumA: a2, checksumB: a2
+checksumA: a3, checksumB: a3
+checksumA: a3, checksumB: a3
+checksumA: a4, checksumB: a4
+checksumA: a4, checksumB: a4
+checksumA: a5, checksumB: a5
+checksumA: a5, checksumB: a5
+checksumA: a6, checksumB: a6
+checksumA: a6, checksumB: a6
+checksumA: a7, checksumB: a7
+checksumA: a7, checksumB: a7
+checksumA: a8, checksumB: a8
+checksumA: a8, checksumB: a8
+checksumA: a9, checksumB: a9
+checksumA: a9, checksumB: a9
+checksumA: aa, checksumB: aa
+checksumA: aa, checksumB: aa
+checksumA: ab, checksumB: ab
+checksumA: ab, checksumB: ab
+checksumA: ac, checksumB: ac
+checksumA: ac, checksumB: ac
+checksumA: ad, checksumB: ad
+checksumA: ad, checksumB: ad
+checksumA: ae, checksumB: ae
+checksumA: ae, checksumB: ae
+checksumA: af, checksumB: af
+checksumA: af, checksumB: af
+checksumA: b0, checksumB: b0
+checksumA: b0, checksumB: b0
+checksumA: b1, checksumB: b1
+checksumA: b1, checksumB: b1
+checksumA: b2, checksumB: b2
+checksumA: b2, checksumB: b2
+checksumA: b3, checksumB: b3
+checksumA: b3, checksumB: b3
+checksumA: b4, checksumB: b4
+checksumA: b4, checksumB: b4
+checksumA: b5, checksumB: b5
+checksumA: b5, checksumB: b5
+checksumA: b6, checksumB: b6
+checksumA: b6, checksumB: b6
+checksumA: b7, checksumB: b7
+checksumA: b7, checksumB: b7
+checksumA: b8, checksumB: b8
+checksumA: b8, checksumB: b8
+checksumA: b9, checksumB: b9
+checksumA: b9, checksumB: b9
+checksumA: ba, checksumB: ba
+checksumA: ba, checksumB: ba
+checksumA: bb, checksumB: bb
+checksumA: bb, checksumB: bb
+checksumA: bc, checksumB: bc
+checksumA: bc, checksumB: bc
+checksumA: bd, checksumB: bd
+checksumA: bd, checksumB: bd
+checksumA: be, checksumB: be
+checksumA: be, checksumB: be
+checksumA: bf, checksumB: bf
+checksumA: bf, checksumB: bf
+checksumA: c0, checksumB: c0
+checksumA: c0, checksumB: c0
+checksumA: 3, checksumB: 3
+checksumA: 3, checksumB: 3
+checksumA: c3, checksumB: c3
+checksumA: c3, checksumB: c3
+checksumA: c4, checksumB: c4
+checksumA: c4, checksumB: c4
+checksumA: c5, checksumB: c5
+checksumA: c5, checksumB: c5
+checksumA: c6, checksumB: c6
+checksumA: c6, checksumB: c6
+checksumA: c7, checksumB: c7
+checksumA: c7, checksumB: c7
+checksumA: c8, checksumB: c8
+checksumA: c8, checksumB: c8
+checksumA: c9, checksumB: c9
+checksumA: c9, checksumB: c9
+checksumA: ca, checksumB: ca
+checksumA: ca, checksumB: ca
+checksumA: cb, checksumB: cb
+checksumA: cb, checksumB: cb
+checksumA: cc, checksumB: cc
+checksumA: cc, checksumB: cc
+checksumA: cd, checksumB: cd
+checksumA: cd, checksumB: cd
+checksumA: ce, checksumB: ce
+checksumA: ce, checksumB: ce
+checksumA: cf, checksumB: cf
+checksumA: cf, checksumB: cf
+checksumA: 0, checksumB: 0
+TEST PASSED
 
 
-test write3 FAILED (0 of 10)
+test write3 PASSED (10 of 10)
  (write then read, buffer smaller than one block)
- User interrupted test
 
-Skipped 7 tests.
-To keep testing after failing a test, use flag '-c' or '--continue'
+starting write4
+
+**********************************************************************
+
+Test write4
+write then read, buffer larger than one block
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/5b/tests/write4.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+rm
+check
+init
+grep
+ln
+kill
+cat
+tester
+sh
+mkdir
+echo
+filestat
+zombie
+forktest
+stressfs
+usertests
+write2
+README
+wc
+ls
+balloc: first 487 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox 
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 2
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+lapicinit: 1 0xfee00000
+cpu1: starting
+cpu0: starting
+init: starting sh
+$ tester
+tester
+buffer size: 1000
+file size: 71000
+create checked file
+writing file
+reopening read only
+reading file
+checksumA: 41, checksumB: 41
+checksumA: 42, checksumB: 42
+checksumA: 42, checksumB: 42
+checksumA: 0, checksumB: 0
+checksumA: 43, checksumB: 43
+checksumA: 43, checksumB: 43
+checksumA: 0, checksumB: 0
+checksumA: 44, checksumB: 44
+checksumA: 44, checksumB: 44
+checksumA: 0, checksumB: 0
+checksumA: 45, checksumB: 45
+checksumA: 45, checksumB: 45
+checksumA: 0, checksumB: 0
+checksumA: 46, checksumB: 46
+checksumA: 46, checksumB: 46
+checksumA: 0, checksumB: 0
+checksumA: 47, checksumB: 47
+checksumA: 47, checksumB: 47
+checksumA: 0, checksumB: 0
+checksumA: 48, checksumB: 48
+checksumA: 48, checksumB: 48
+checksumA: 0, checksumB: 0
+checksumA: 49, checksumB: 49
+checksumA: 49, checksumB: 49
+checksumA: 0, checksumB: 0
+checksumA: 4a, checksumB: 4a
+checksumA: 4a, checksumB: 4a
+checksumA: 0, checksumB: 0
+checksumA: 4b, checksumB: 4b
+checksumA: 4b, checksumB: 4b
+checksumA: 0, checksumB: 0
+checksumA: 4c, checksumB: 4c
+checksumA: 4c, checksumB: 4c
+checksumA: 0, checksumB: 0
+checksumA: 4d, checksumB: 4d
+checksumA: 4d, checksumB: 4d
+checksumA: 0, checksumB: 0
+checksumA: 4e, checksumB: 4e
+checksumA: 4e, checksumB: 4e
+checksumA: 0, checksumB: 0
+checksumA: 4f, checksumB: 4f
+checksumA: 4f, checksumB: 4f
+checksumA: 0, checksumB: 0
+checksumA: 50, checksumB: 50
+checksumA: 50, checksumB: 50
+checksumA: 0, checksumB: 0
+checksumA: 51, checksumB: 51
+checksumA: 51, checksumB: 51
+checksumA: 0, checksumB: 0
+checksumA: 52, checksumB: 52
+checksumA: 52, checksumB: 52
+checksumA: 0, checksumB: 0
+checksumA: 53, checksumB: 53
+checksumA: 53, checksumB: 53
+checksumA: 0, checksumB: 0
+checksumA: 54, checksumB: 54
+checksumA: 54, checksumB: 54
+checksumA: 0, checksumB: 0
+checksumA: 55, checksumB: 55
+checksumA: 55, checksumB: 55
+checksumA: 0, checksumB: 0
+checksumA: 56, checksumB: 56
+checksumA: 56, checksumB: 56
+checksumA: 57, checksumB: 57
+checksumA: 57, checksumB: 57
+checksumA: 0, checksumB: 0
+checksumA: 58, checksumB: 58
+checksumA: 58, checksumB: 58
+checksumA: 0, checksumB: 0
+checksumA: 59, checksumB: 59
+checksumA: 59, checksumB: 59
+checksumA: 0, checksumB: 0
+checksumA: 5a, checksumB: 5a
+checksumA: 5a, checksumB: 5a
+checksumA: 0, checksumB: 0
+checksumA: 5b, checksumB: 5b
+checksumA: 5b, checksumB: 5b
+checksumA: 0, checksumB: 0
+checksumA: 5c, checksumB: 5c
+checksumA: 5c, checksumB: 5c
+checksumA: 0, checksumB: 0
+checksumA: 5d, checksumB: 5d
+checksumA: 5d, checksumB: 5d
+checksumA: 0, checksumB: 0
+checksumA: 5e, checksumB: 5e
+checksumA: 5e, checksumB: 5e
+checksumA: 0, checksumB: 0
+checksumA: 5f, checksumB: 5f
+checksumA: 5f, checksumB: 5f
+checksumA: 0, checksumB: 0
+checksumA: 60, checksumB: 60
+checksumA: 60, checksumB: 60
+checksumA: 0, checksumB: 0
+checksumA: 61, checksumB: 61
+checksumA: 61, checksumB: 61
+checksumA: 0, checksumB: 0
+checksumA: 62, checksumB: 62
+checksumA: 62, checksumB: 62
+checksumA: 0, checksumB: 0
+checksumA: 63, checksumB: 63
+checksumA: 63, checksumB: 63
+checksumA: 0, checksumB: 0
+checksumA: 64, checksumB: 64
+checksumA: 64, checksumB: 64
+checksumA: 0, checksumB: 0
+checksumA: 65, checksumB: 65
+checksumA: 65, checksumB: 65
+checksumA: 0, checksumB: 0
+checksumA: 66, checksumB: 66
+checksumA: 66, checksumB: 66
+checksumA: 0, checksumB: 0
+checksumA: 67, checksumB: 67
+checksumA: 67, checksumB: 67
+checksumA: 0, checksumB: 0
+checksumA: 68, checksumB: 68
+checksumA: 68, checksumB: 68
+checksumA: 0, checksumB: 0
+checksumA: 69, checksumB: 69
+checksumA: 69, checksumB: 69
+checksumA: 0, checksumB: 0
+checksumA: 6a, checksumB: 6a
+checksumA: 6a, checksumB: 6a
+checksumA: 0, checksumB: 0
+checksumA: 6b, checksumB: 6b
+checksumA: 6b, checksumB: 6b
+checksumA: 6c, checksumB: 6c
+checksumA: 6c, checksumB: 6c
+checksumA: 0, checksumB: 0
+checksumA: 6d, checksumB: 6d
+checksumA: 6d, checksumB: 6d
+checksumA: 0, checksumB: 0
+checksumA: 6e, checksumB: 6e
+checksumA: 6e, checksumB: 6e
+checksumA: 0, checksumB: 0
+checksumA: 6f, checksumB: 6f
+checksumA: 6f, checksumB: 6f
+checksumA: 0, checksumB: 0
+checksumA: 70, checksumB: 70
+checksumA: 70, checksumB: 70
+checksumA: 0, checksumB: 0
+checksumA: 71, checksumB: 71
+checksumA: 71, checksumB: 71
+checksumA: 0, checksumB: 0
+checksumA: 72, checksumB: 72
+checksumA: 72, checksumB: 72
+checksumA: 0, checksumB: 0
+checksumA: 73, checksumB: 73
+checksumA: 73, checksumB: 73
+checksumA: 0, checksumB: 0
+checksumA: 74, checksumB: 74
+checksumA: 74, checksumB: 74
+checksumA: 0, checksumB: 0
+checksumA: 75, checksumB: 75
+checksumA: 75, checksumB: 75
+checksumA: 0, checksumB: 0
+checksumA: 76, checksumB: 76
+checksumA: 76, checksumB: 76
+checksumA: 0, checksumB: 0
+checksumA: 77, checksumB: 77
+checksumA: 77, checksumB: 77
+checksumA: 0, checksumB: 0
+checksumA: 78, checksumB: 78
+checksumA: 78, checksumB: 78
+checksumA: 0, checksumB: 0
+checksumA: 79, checksumB: 79
+checksumA: 79, checksumB: 79
+checksumA: 0, checksumB: 0
+checksumA: 7a, checksumB: 7a
+checksumA: 7a, checksumB: 7a
+checksumA: 0, checksumB: 0
+checksumA: 7b, checksumB: 7b
+checksumA: 7b, checksumB: 7b
+checksumA: 0, checksumB: 0
+checksumA: 7c, checksumB: 7c
+checksumA: 7c, checksumB: 7c
+checksumA: 0, checksumB: 0
+checksumA: 7d, checksumB: 7d
+checksumA: 7d, checksumB: 7d
+checksumA: 0, checksumB: 0
+checksumA: 7e, checksumB: 7e
+checksumA: 7e, checksumB: 7e
+checksumA: 0, checksumB: 0
+checksumA: 7f, checksumB: 7f
+checksumA: 7f, checksumB: 7f
+checksumA: 0, checksumB: 0
+checksumA: 80, checksumB: 80
+checksumA: 80, checksumB: 80
+checksumA: 0, checksumB: 0
+checksumA: 81, checksumB: 81
+checksumA: 82, checksumB: 82
+checksumA: 82, checksumB: 82
+checksumA: 0, checksumB: 0
+checksumA: 83, checksumB: 83
+checksumA: 83, checksumB: 83
+checksumA: 0, checksumB: 0
+checksumA: 84, checksumB: 84
+checksumA: 84, checksumB: 84
+checksumA: 0, checksumB: 0
+checksumA: 85, checksumB: 85
+checksumA: 85, checksumB: 85
+checksumA: 0, checksumB: 0
+checksumA: 86, checksumB: 86
+checksumA: 86, checksumB: 86
+checksumA: 0, checksumB: 0
+checksumA: 87, checksumB: 87
+checksumA: 87, checksumB: 87
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+TEST PASSED
+
+
+test write4 PASSED (10 of 10)
+ (write then read, buffer larger than one block)
+
+starting write5
+
+**********************************************************************
+
+Test write5
+check the correct image is produced after writing
+
+**********************************************************************
+Trying to build project using make
+make
+make: Nothing to be done for `all'.
+Using image /u/c/s/cs537-1/ta/tests/5b/images/write5-before.img
+make qemu-nox
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 2
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+lapicinit: 1 0xfee00000
+cpu1: starting
+cpu0: starting
+init: starting sh
+$ write5
+write5
+buffer size: 512
+file size: 71680
+create checked file
+writing file
+reopening read only
+reading file
+checksumA: 41, checksumB: 41
+checksumA: 42, checksumB: 42
+checksumA: 43, checksumB: 43
+checksumA: 44, checksumB: 44
+checksumA: 45, checksumB: 45
+checksumA: 46, checksumB: 46
+checksumA: 47, checksumB: 47
+checksumA: 48, checksumB: 48
+checksumA: 49, checksumB: 49
+checksumA: 4a, checksumB: 4a
+checksumA: 4b, checksumB: 4b
+checksumA: 4c, checksumB: 4c
+checksumA: 4d, checksumB: 4d
+checksumA: 4e, checksumB: 4e
+checksumA: 4f, checksumB: 4f
+checksumA: 50, checksumB: 50
+checksumA: 51, checksumB: 51
+checksumA: 52, checksumB: 52
+checksumA: 53, checksumB: 53
+checksumA: 54, checksumB: 54
+checksumA: 55, checksumB: 55
+checksumA: 56, checksumB: 56
+checksumA: 57, checksumB: 57
+checksumA: 58, checksumB: 58
+checksumA: 59, checksumB: 59
+checksumA: 5a, checksumB: 5a
+checksumA: 5b, checksumB: 5b
+checksumA: 5c, checksumB: 5c
+checksumA: 5d, checksumB: 5d
+checksumA: 5e, checksumB: 5e
+checksumA: 5f, checksumB: 5f
+checksumA: 60, checksumB: 60
+checksumA: 61, checksumB: 61
+checksumA: 62, checksumB: 62
+checksumA: 63, checksumB: 63
+checksumA: 64, checksumB: 64
+checksumA: 65, checksumB: 65
+checksumA: 66, checksumB: 66
+checksumA: 67, checksumB: 67
+checksumA: 68, checksumB: 68
+checksumA: 69, checksumB: 69
+checksumA: 6a, checksumB: 6a
+checksumA: 6b, checksumB: 6b
+checksumA: 6c, checksumB: 6c
+checksumA: 6d, checksumB: 6d
+checksumA: 6e, checksumB: 6e
+checksumA: 6f, checksumB: 6f
+checksumA: 70, checksumB: 70
+checksumA: 71, checksumB: 71
+checksumA: 72, checksumB: 72
+checksumA: 73, checksumB: 73
+checksumA: 74, checksumB: 74
+checksumA: 75, checksumB: 75
+checksumA: 76, checksumB: 76
+checksumA: 77, checksumB: 77
+checksumA: 78, checksumB: 78
+checksumA: 79, checksumB: 79
+checksumA: 7a, checksumB: 7a
+checksumA: 7b, checksumB: 7b
+checksumA: 7c, checksumB: 7c
+checksumA: 7d, checksumB: 7d
+checksumA: 7e, checksumB: 7e
+checksumA: 7f, checksumB: 7f
+checksumA: 80, checksumB: 80
+checksumA: 81, checksumB: 81
+checksumA: 82, checksumB: 82
+checksumA: 83, checksumB: 83
+checksumA: 84, checksumB: 84
+checksumA: 85, checksumB: 85
+checksumA: 86, checksumB: 86
+checksumA: 87, checksumB: 87
+checksumA: 88, checksumB: 88
+checksumA: 89, checksumB: 89
+checksumA: 8a, checksumB: 8a
+checksumA: 8b, checksumB: 8b
+checksumA: 8c, checksumB: 8c
+checksumA: 8d, checksumB: 8d
+checksumA: 8e, checksumB: 8e
+checksumA: 8f, checksumB: 8f
+checksumA: 90, checksumB: 90
+checksumA: 91, checksumB: 91
+checksumA: 92, checksumB: 92
+checksumA: 93, checksumB: 93
+checksumA: 94, checksumB: 94
+checksumA: 95, checksumB: 95
+checksumA: 96, checksumB: 96
+checksumA: 97, checksumB: 97
+checksumA: 98, checksumB: 98
+checksumA: 99, checksumB: 99
+checksumA: 9a, checksumB: 9a
+checksumA: 9b, checksumB: 9b
+checksumA: 9c, checksumB: 9c
+checksumA: 9d, checksumB: 9d
+checksumA: 9e, checksumB: 9e
+checksumA: 9f, checksumB: 9f
+checksumA: a0, checksumB: a0
+checksumA: a1, checksumB: a1
+checksumA: a2, checksumB: a2
+checksumA: a3, checksumB: a3
+checksumA: a4, checksumB: a4
+checksumA: a5, checksumB: a5
+checksumA: a6, checksumB: a6
+checksumA: a7, checksumB: a7
+checksumA: a8, checksumB: a8
+checksumA: a9, checksumB: a9
+checksumA: aa, checksumB: aa
+checksumA: ab, checksumB: ab
+checksumA: ac, checksumB: ac
+checksumA: ad, checksumB: ad
+checksumA: ae, checksumB: ae
+checksumA: af, checksumB: af
+checksumA: b0, checksumB: b0
+checksumA: b1, checksumB: b1
+checksumA: b2, checksumB: b2
+checksumA: b3, checksumB: b3
+checksumA: b4, checksumB: b4
+checksumA: b5, checksumB: b5
+checksumA: b6, checksumB: b6
+checksumA: b7, checksumB: b7
+checksumA: b8, checksumB: b8
+checksumA: b9, checksumB: b9
+checksumA: ba, checksumB: ba
+checksumA: bb, checksumB: bb
+checksumA: bc, checksumB: bc
+checksumA: bd, checksumB: bd
+checksumA: be, checksumB: be
+checksumA: bf, checksumB: bf
+checksumA: c0, checksumB: c0
+checksumA: c1, checksumB: c1
+checksumA: c2, checksumB: c2
+checksumA: c3, checksumB: c3
+checksumA: c4, checksumB: c4
+checksumA: c5, checksumB: c5
+checksumA: c6, checksumB: c6
+checksumA: c7, checksumB: c7
+checksumA: c8, checksumB: c8
+checksumA: c9, checksumB: c9
+checksumA: ca, checksumB: ca
+checksumA: cb, checksumB: cb
+checksumA: cc, checksumB: cc
+TEST PASSED
+Comparing actual image with expected image
+
+
+test write5 FAILED (0 of 10)
+ (check the correct image is produced after writing)
+ Block 569 of fs.img does not match expected
+
+starting checksum1
+
+**********************************************************************
+
+Test checksum1
+check that stat gives the correct checksum
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/5b/tests/checksum1.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+rm
+check
+init
+grep
+ln
+kill
+cat
+tester
+sh
+mkdir
+echo
+filestat
+zombie
+forktest
+stressfs
+usertests
+write2
+README
+wc
+ls
+balloc: first 487 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox 
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 2
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+lapicinit: 1 0xfee00000
+cpu1: starting
+cpu0: starting
+init: starting sh
+$ tester
+tester
+buffer size: 1000
+file size: 70000
+create checked file
+writing file
+NDIRECT addr: 1f3
+addr checks: 280001e7
+checks: 28
+NDIRECT addr: 1f3
+addr checks: 2b0001e8
+checks: 3
+NDIRECT addr: 1f3
+addr checks: 1e9
+checks: 3
+NDIRECT addr: 1f3
+addr checks: 2a0001ea
+checks: 29
+NDIRECT addr: 1f3
+addr checks: 1eb
+checks: 29
+NDIRECT addr: 1f3
+addr checks: 2d0001ec
+checks: 4
+NDIRECT addr: 1f3
+addr checks: 1ed
+checks: 4
+NDIRECT addr: 1f3
+addr checks: 2c0001ee
+checks: 28
+NDIRECT addr: 1f3
+addr checks: 1ef
+checks: 28
+NDIRECT addr: 1f3
+addr checks: 2f0001f0
+checks: 7
+NDIRECT addr: 1f3
+addr checks: 1f1
+checks: 7
+NDIRECT addr: 1f3
+addr checks: 2e0001f2
+checks: 29
+stat checksum: 199 actual: 199
+TEST PASSED
+
+
+test checksum1 PASSED (10 of 10)
+ (check that stat gives the correct checksum)
+
+starting checksum2
+
+**********************************************************************
+
+Test checksum2
+check that stat gives the correct checksum
+
+**********************************************************************
+Trying to build project using make
+make
+make: Nothing to be done for `all'.
+Using image /u/c/s/cs537-1/ta/tests/5b/images/checksum2.img
+make qemu-nox
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 2
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+lapicinit: 1 0xfee00000
+cpu1: starting
+cpu0: starting
+init: starting sh
+$ checksum2
+checksum2
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 1, checksumB: 0
+NDIRECT addr: 251
+addr checks: 245
+checks: 0
+NDIRECT addr: 251
+addr checks: 246
+checks: 0
+NDIRECT addr: 251
+addr checks: 247
+checks: 0
+NDIRECT addr: 251
+addr checks: 248
+checks: 0
+NDIRECT addr: 251
+addr checks: 249
+checks: 0
+NDIRECT addr: 251
+addr checks: 24a
+checks: 0
+NDIRECT addr: 251
+addr checks: 24b
+checks: 0
+NDIRECT addr: 251
+addr checks: 24c
+checks: 0
+NDIRECT addr: 251
+addr checks: 24d
+checks: 0
+NDIRECT addr: 251
+addr checks: 24e
+checks: 0
+NDIRECT addr: 251
+addr checks: 24f
+checks: 0
+NDIRECT addr: 251
+addr checks: 250
+checks: 0
+checksum: 1
+TEST PASSED
+
+
+test checksum2 PASSED (10 of 10)
+ (check that stat gives the correct checksum)
+
+starting corrupt1
+
+**********************************************************************
+
+Test corrupt1
+first block of file is corrupt
+
+**********************************************************************
+Trying to build project using make
+make
+make: Nothing to be done for `all'.
+Using image /u/c/s/cs537-1/ta/tests/5b/images/corrupt1.img
+make qemu-nox
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 2
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+lapicinit: 1 0xfee00000
+cpu1: starting
+cpu0: starting
+init: starting sh
+$ corrupt1
+corrupt1
+checksumA: 1, checksumB: 0
+TEST PASSED
+$ 
+
+test corrupt1 PASSED (10 of 10)
+ (first block of file is corrupt)
+
+starting corrupt2
+
+**********************************************************************
+
+Test corrupt2
+13th block of file is corrupt
+
+**********************************************************************
+Trying to build project using make
+make
+make: Nothing to be done for `all'.
+Using image /u/c/s/cs537-1/ta/tests/5b/images/corrupt2.img
+make qemu-nox
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 2
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+lapicinit: 1 0xfee00000
+cpu1: starting
+cpu0: starting
+init: starting sh
+$ corrupt2
+corrupt2
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 0, checksumB: 0
+checksumA: 1, checksumB: 0
+TEST PASSED
+
+
+test corrupt2 PASSED (10 of 10)
+ (13th block of file is corrupt)
+
+starting filestatcheck
+
+**********************************************************************
+
+Test filestatcheck
+check if filestat exist
+
+**********************************************************************
+filestat.c found
+TEST PASSED
+
+
+test filestatcheck PASSED (5 of 5)
+ (check if filestat exist)
+
+**********************************************************************
+Summary:
+test build PASSED
+ (build xv6 using make)
+
+test write1 PASSED (15 of 15)
+ (write then read a block)
+
+test write2 PASSED (10 of 10)
+ (write then read largest possible file)
+
+test write3 PASSED (10 of 10)
+ (write then read, buffer smaller than one block)
+
+test write4 PASSED (10 of 10)
+ (write then read, buffer larger than one block)
+
+test write5 FAILED (0 of 10)
+ (check the correct image is produced after writing)
+ Block 569 of fs.img does not match expected
+
+test checksum1 PASSED (10 of 10)
+ (check that stat gives the correct checksum)
+
+test checksum2 PASSED (10 of 10)
+ (check that stat gives the correct checksum)
+
+test corrupt1 PASSED (10 of 10)
+ (first block of file is corrupt)
+
+test corrupt2 PASSED (10 of 10)
+ (13th block of file is corrupt)
+
+test filestatcheck PASSED (5 of 5)
+ (check if filestat exist)
+
+Passed 10 of 11 tests.
+Overall 10 of 11
+Points 90 of 100

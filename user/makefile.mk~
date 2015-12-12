@@ -4,6 +4,7 @@ USER_PROGS := \
 	cat\
 	check\
 	echo\
+  filestat\
 	forktest\
 	grep\
 	init\
